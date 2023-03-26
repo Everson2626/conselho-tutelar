@@ -1,0 +1,62 @@
+input {
+    width: 100% !important;
+}
+
+p-card {
+    border: 1px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px;
+}
+
+hr.dashed {
+    border: 1px solid #e0e0e0;
+    width: 100%;
+}
+
+.fileUpload {
+    width: 100%;
+    height: 200px;
+
+    h5 {
+        height: 20px;
+    }
+}
+
+.card-center {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .container {
+        width: 400px;
+
+        ::ng-deep {
+            .p-dropdown{
+                width: 100%;
+            }
+        }
+    }
+}
+
+:host {
+    ::ng-deep{
+        .p-fileupload{
+            .p-fileupload-buttonbar{
+                padding: 10px;
+
+                .p-button {
+                    padding: 5px;
+                }
+            }
+
+            .p-fileupload-content{
+                padding: 10px;
+                height: 100px;
+            }
+        }
+    }
+}

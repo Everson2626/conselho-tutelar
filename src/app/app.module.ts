@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { FormularioModule } from './components/formulario/formulario.module';
+import { MenuComponent } from './components/menu/menu.component';
+import { MenuModule } from './components/menu/menu.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,9 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormularioModule,
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

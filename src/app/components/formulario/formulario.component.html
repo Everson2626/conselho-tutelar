@@ -1,0 +1,130 @@
+<p-toast></p-toast>
+<form [formGroup]="form">
+    <p-card *ngIf="!idPrefeituraSelecionada && !idCadastroRealizado" class="card-center">
+        <div class="container ui-g ui-fluid" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="25px">
+            <label for="dsCidadePrefeitura">Selecione a prefeitura:</label>
+            <p-dropdown [options]="cidades" formControlName="dsCidadePrefeitura" id="dsCidadePrefeitura" optionLabel="name"></p-dropdown>
+            <button pButton pRipple label="Continuar" class="p-button-success" (click)="idPrefeituraSelecionada = true" ></button>
+        </div>
+    </p-card>
+
+    
+    <div *ngIf="idPrefeituraSelecionada && !idCadastroRealizado" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="25px">
+        
+        <p-card>
+            
+                <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="25px">
+                    
+                    <div class="ui-g ui-fluid" fxLayout="row" fxLayoutAlign="space-around start">
+                        <div class="p-float-label" fxFlex="100">
+                            <input id="float-input" type="text" pInputText formControlName="nmPessoa"> 
+                            <label for="float-input">Nome</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="25px">
+                        <div class="p-float-label" fxFlex="50">
+                            <input id="float-input" type="text" pInputText formControlName="dsCidade"> 
+                            <label for="float-input">Cidade</label>
+                        </div>
+                        <div class="p-float-label" fxFlex="50">
+                            <input id="float-input" type="text" pInputText formControlName="dsEndereco"> 
+                            <label for="float-input">Endereço</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="25px">
+                        <div class="p-float-label" fxFlex="50">
+                            <input id="float-input" type="text" pInputText formControlName="dsEmail"> 
+                            <label for="float-input">E-mail</label>
+                        </div>
+                        <div class="p-float-label" fxFlex="50">
+                            <input id="float-input" type="text" pInputText formControlName="dsCelular"> 
+                            <label for="float-input">Celular</label>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="25px">
+                        <div class="p-float-label" fxFlex="50">
+                            <input id="float-input" type="text" pInputText formControlName="dsCpf"> 
+                            <label for="float-input">CPF</label>
+                        </div>
+                        <div class="p-float-label" fxFlex="50">
+                            <input id="float-input" type="text" pInputText formControlName="dsRg"> 
+                            <label for="float-input">Rg</label>
+                        </div>
+                    </div>
+        
+                </div>
+            
+        </p-card>
+        
+        <p-card>
+            <div fxLayout="column" fxLayoutAlign="space-evenly start" fxLayoutGap="25px">
+                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="15px">
+                    <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="15px">
+    
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Documento de identidade</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgIdentidade',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Certidão de Nascimento ou Casamento</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgCertidaoNascimento',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Comprovante de residência no Município expedido dentro dos três meses anteriores à publicação do edital (ou na circunscrição, para Municípios com mais de um Conselho Tutelar)</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgComprovanteResidencia',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Certidão de antecedentes cíveis e criminais da Justiça Estadual</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgAntecedentesCivis',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Certidão de antecedentes criminais da Justiça Eleitoral, da Justiça Federal e da Justiça Militar da União</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgAntecedentesCriminais',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Certificado de quitação eleitoral</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgQuitacaoEleitoral',$event)"></p-fileUpload>
+                        </div>
+                    </div>
+    
+                    <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="15px">
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Diploma ou Certificado de conclusão de curso (conforme etapa da educação exigida pela Lei Municipal)</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgDiploma',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Formulário de comprovação de experiência na promoção, proteção ou defesa dos direitos da criança e do adolescente devidamente preenchido, com cópia dos documentos comprobatórios</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgComprovacaoExperiencia',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Comprovante de quitação com as obrigações militares (apenas para os homens)</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgQuitacaoMilitar',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Declaração do candidato de que não foi penalizado com a destituição da função de membro do Conselho Tutelar</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgCandidatoNaoPenalizado',$event)"></p-fileUpload>
+                        </div>
+                        <div class="fileUpload" fxLayout="column" fxLayoutAlign="start stretch">
+                            <h5>Comprovante da possibilidade de permanecer à disposição do Conselho Tutelar (caso o candidato seja servidor público municipal)</h5>
+                            <p-fileUpload name="myfile[]" chooseLabel="Enviar" [showUploadButton]="false" (onSelect)="salvarImg('imgPossibilidadeDePermanecerConselhoTutelar',$event)"></p-fileUpload>
+                        </div>
+                    </div>
+                </div>
+
+                <button pButton pRipple label="Salvar" class="p-button-success" (click)="cadastrar()" ></button>
+            </div>
+            
+        </p-card>
+
+        
+
+        
+    </div>
+
+    <p-card *ngIf="idPrefeituraSelecionada && idCadastroRealizado" class="card-center">
+        <div class="container ui-g ui-fluid" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="25px">
+            <h2>Candidatura para a prefeitura de [nome] realizada com sucesso</h2>
+            <p>Confira seu e-mail para mais informações</p>
+        </div>
+    </p-card>
+</form>
